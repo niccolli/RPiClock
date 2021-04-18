@@ -92,6 +92,7 @@ void DriveLED(){
       num = ~LED_SEG_NUM[time_minute%10];    
       break;
     case 4: // コロン
+      // 偶数秒はコロンを点灯
       if(time_second%2){
         num = ~LED_SEG_OFF;
       } else {
@@ -107,6 +108,7 @@ void DriveLED(){
     digitalWrite(LED_SEGS[i], out);
     num >>= 1;
   }
+  // 準備ができてから点灯
   digitalWrite(LED_COLS[col], HIGH);
 }
 
