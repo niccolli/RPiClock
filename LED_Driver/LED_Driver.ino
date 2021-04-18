@@ -3,9 +3,9 @@
  * 常時通信しっぱなしにすることはない。
  */
 #include <MsTimer2.h>
-#include<SPI.h>
-volatile int i = 0;
-byte myArray[2];
+#include <SPI.h>
+volatile int spi_count = 0;
+unsigned char spi_receive[3];
 
 // DP_G_F_E_D_C_B_A
 #define LED_SEG_0   0b00111111
@@ -128,6 +128,12 @@ void loop(void)
 
 ISR (SPI_STC_vect)   //Inerrrput routine function
 {
-  myArray[i] = SPDR;
-  i++;
+  spi_receive[spi_count] = SPDR;
+  spi_count++;
+  if(spi_count == sizeof(spi_receive)){
+    time_hour   = spi_receive[0];
+    time_minute = spi_receive[1];
+    time_second = spi_receive[2];
+    spi_count = 0;
+  }
 }
