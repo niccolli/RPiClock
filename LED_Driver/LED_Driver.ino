@@ -130,7 +130,7 @@ ISR (SPI_STC_vect)   //Inerrrput routine function
 {
   spi_receive[spi_count] = SPDR;
   spi_count++;
-  if(spi_count == sizeof(spi_receive)){
+  if(spi_count >= 3){
     time_hour   = spi_receive[0];
     time_minute = spi_receive[1];
     time_second = spi_receive[2];
