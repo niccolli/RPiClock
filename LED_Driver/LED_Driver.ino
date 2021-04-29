@@ -114,14 +114,6 @@ void DriveLED(){
 
 void loop(void)
 {
-  // if (i == 2)
-  // {
-  //   int x = (int)myArray[0]<<8|(int)myArray[1];
-  //   Serial.print("Received 16-bit data item from Master: ");
-  //   Serial.println(x, HEX);
-  //   i=0;
-  //   Serial.println("=============================================");
-  // }
   DriveLED();
   delay(1);
 }
